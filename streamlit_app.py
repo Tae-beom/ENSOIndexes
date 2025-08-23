@@ -41,10 +41,10 @@ color_js  = df["색"].tolist()
 init_idx  = len(df) - 1
 init_date = dates_js[init_idx]
 
-st.title("📊 SST 지수 — 슬라이더 실시간 시각화")
+st.title("📊 El nino 지수")
 
 # 차트 래퍼/폭 (오른쪽 잘림 방지 위해 넓힘)
-W = 1100   # ← 필요하면 여기 수치만 바꿔서 전체 가로폭 조절
+W = 1120   # ← 필요하면 여기 수치만 바꿔서 전체 가로폭 조절
 
 html = f"""
 <div id="chartWrap" style="width:{W}px; margin:0 auto; position:relative;">
@@ -79,7 +79,7 @@ html = f"""
     x: dates,
     y: ssts,
     mode: 'lines',
-    name: 'SST Index',
+    name: 'SST anomalies',
     line: {{color: 'dodgerblue', width: 2}}
   }};
 
@@ -103,7 +103,7 @@ html = f"""
       ticktext: tickTexts
     }},
     yaxis: {{
-      title: 'SST Index',
+      title: 'SST anomalies',
       range: [yMin, yMax]
     }},
     template: 'simple_white',
@@ -150,7 +150,7 @@ html = f"""
     }}
 
     info.innerHTML = "📅 " + year + "년 동태평양 표층 수온 편차: "
-                   + "<span style='color:" + color + "'><b>" + sstStr + "</b></span>, "
+                   + "<span style='color:" + color + "'><b>" + sstStr + "</b></span> ⇒ "
                    + stateText;
   }}
 
