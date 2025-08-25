@@ -70,7 +70,7 @@ def load_index(index_name: str):
                 return "중립", "black"
 
         df["상태"], df["색"] = zip(*df["VALUE"].apply(classify))
-        meta = dict(title="ONI (SST anomalies)", yaxis_label="SST anomalies (°C)",
+        meta = dict(title="ONI", yaxis_label="SST anomalies (°C)",
                     thr_pos=thr_pos, thr_neg=thr_neg)
         return df, meta
 
@@ -144,14 +144,14 @@ def load_index(index_name: str):
         def classify(v):
             # OLR 해석은 지수 정의에 따라 다릅니다. 일단 절댓값 기준 중립/비중립만 표시.
             if v >= thr_pos:
-                return "양의 편차", "red"
+                return "라니냐", "blue"
             elif v <= thr_neg:
-                return "음의 편차", "blue"
+                return "엘니뇨", "red"
             else:
                 return "중립", "black"
 
         df["상태"], df["색"] = zip(*df["VALUE"].apply(classify))
-        meta = dict(title="OLR (임시 기준)", yaxis_label="OLR anomaly (?)",
+        meta = dict(title="OLR", yaxis_label="OLR anomaly (?)",
                     thr_pos=thr_pos, thr_neg=thr_neg)
         return df, meta
 
@@ -203,7 +203,7 @@ html = f"""
   <!-- 슬라이더 (그래프 바로 아래) -->
   <div id="sliderWrap" style="position:relative; height:56px; margin-top:0;">
     <input type="range" id="monthSlider" min="0" max="{len(df)-1}" value="{init_idx}"
-      style="position:absolute; width:897px; left:50px;">
+      style="position:absolute; width:960px; left:50px;">
   </div>
 
   <!-- 결과 패널 -->
